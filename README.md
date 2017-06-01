@@ -4,7 +4,7 @@ Writeup TBD.
 
 Basically, use QRCodes for anything (captive browser, citrix, RDP)
 Use pixel beaming for captive browsers and captive VMs.
-
+```
 Light/
 ├── pixeltrator
 │   ├── consumer
@@ -28,3 +28,4 @@ Light/
     │       └── Screen.java
     └── producer
         └── qrbeamer.html
+```
