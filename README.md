@@ -1,9 +1,4 @@
-# Exfills 
-Exfiltration with pixels and QR Codes. Possibly sound, TBD
-Writeup TBD.
-
-Basically, use QRCodes for anything (captive browser, citrix, RDP)
-Use pixel beaming for captive browsers and captive VMs.
+Please Refer to [Wiki](https://github.com/dsnezhkov/exfills/wiki) for details on the project and its components
 ```
 Light/
 ├── pixeltrator
