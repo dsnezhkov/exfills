@@ -1,10 +1,21 @@
 <html>
 	 <header>
 	 	<style>
-			textarea {
+			#incoming {
 				width: 500px;
 				height: 200px;
 			   max-height: 200px;
+				font-size: 18px; 
+				color: #1A5276 ;
+				border: 3px solid grey;
+			}
+			#original {
+				width: 500px;
+				height: 200px;
+			   max-height: 200px;
+				font-size: 18px; 
+				color: #BA4A00;
+				border: 3px solid grey;
 			}
 			div{
 				 color: black;
@@ -16,13 +27,16 @@
 			}
 			.fixed{
 				 background-color:#F8C471;
+				 padding-left: 20px;
+				 padding-right: 20px;
 				 width: 400px;
 			}
 			.flex-item{
+				 padding-left: 50px;
 				 background-color: #FEF9E7;
 				 flex-grow: 1;
 			}
-			.dbutton, .sbutton {
+			.rbutton, .dbutton, .sbutton, .abutton, .cbutton {
 				 background-color: #D35400;
 				 border: none;
 				 color: white;
@@ -30,20 +44,20 @@
 				 text-align: center;
 				 text-decoration: none;
 				 display: inline-block;
-				 font-size: 12px;
+				 font-size: 14px;
 			}
 		</style>
 	 </header>
 
     <body>
-	 	<h3> Anastasia's mate </h3>
-		<p>In <b>Anastasia's mate</b>, a knight and rook team up to trap the opposing king between the side of the board on one side and a friendly piece on the other</p>
 
 
 		<div class="container">
 		  <div class="fixed">
 
+	 		<h3> Anastasia's mate </h3>
 			<img src="./checkmate.jpg" usemap="#map">
+			<p>In <b>Anastasia's mate</b>, a knight and rook team up to trap the opposing king between the side of the board on one side and a friendly piece on the other</p>
 
 			<map name="map" id="map">
 				 <area target="_self" alt="A" title="A" href="#A" coords="13,12,59,58" shape="rect">
@@ -117,12 +131,17 @@
 					<p>
 						<textarea id="incoming" placeholder="Incoming B64 Data displayed here" ></textarea>
 						<p>
+							<button class="rbutton" id="rbutton" type="button">Display B64</button>
 							<button class="dbutton" id="dbutton" type="button">Decode</button>
-							<button class="sbutton" id="sbutton" type="button">Save</button>
+							<button class="sbutton" id="sbutton" type="button">Save (B)</button>
+							<button class="abutton" id="abutton" type="button">Save (S)</button>
 						</p>
 					</p>
 					<p>
 						<textarea id="original" placeholder="Original string Data displayed here" ></textarea>
+					</p>
+					<p>
+						<button class="cbutton" id="cbutton" type="button">Clear Displayed Contents</button>
 					</p>
 			  </div>
 			</div>

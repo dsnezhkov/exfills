@@ -1,4 +1,4 @@
-import java.io.Console;
+import java.io.*; 
 import java.util.Map;
 import java.util.HashMap;
 
@@ -9,23 +9,42 @@ import java.awt.Robot;
 import java.awt.MouseInfo;
 import java.awt.event.InputEvent;
 
+
+
 public class Rook {
 
   public static void main(String[] args) throws Exception{
 
 
-	 String data="";
+	 String inputFile="";
+	 byte[] inputDataBytes=null;
+
 	 if (args.length > 0) {
-		data=args[0];	
+		inputFile=args[0];	
 	 }else{
-       System.err.println("Need some string");
+       System.err.println("Needs a file path");
        System.exit(1);
 	 }
+
+	 try {
+	 	InputStream inputStream = new FileInputStream(inputFile);
+		long fileSize = new File(inputFile).length();
+ 
+		inputDataBytes = new byte[(int) fileSize];
+		inputStream.read(inputDataBytes);
+ 
+    } catch (IOException ex) {
+       ex.printStackTrace();
+       System.err.println("File Issue");
+       System.exit(2);
+    }
+
+
 
  	 Console c = System.console();
     if (c == null) {
        System.err.println("No console.");
-       System.exit(2);
+       System.exit(3);
     }
 
 	 String b64data="";
@@ -67,12 +86,10 @@ public class Rook {
 	 }
 
 	 // Encode using basic encoder
-	 try{
-		 b64data = Base64.getEncoder().encodeToString(data.getBytes("utf-8"));
-		 System.out.println("Base64 Encoded String (Basic) :" + b64data);
-    }catch(UnsupportedEncodingException e){
-       System.out.println("Error :" + e.getMessage());
-    }
+
+	 
+	 b64data = Base64.getEncoder().encodeToString(inputDataBytes);
+	 System.out.println("Base64 Encoded String (Basic) :" + b64data);
 
 	 // Get Current position of center of first tile
 	 String enter = c.readLine("Point mouse to the center of first tile, press <Enter> ");	  
