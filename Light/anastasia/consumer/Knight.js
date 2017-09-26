@@ -1,30 +1,4 @@
 
-var charsetTbl = [
-	['A','B','C','D','E','F','G','H'],
-	['I','J','K','L','M','N','O','P'],
-	['Q','R','S','T','U','V','W','X'],
-	['Y','Z','a','b','c','d','e','f'],
-	['g','h','i','j','k','l','m','n'],
-	['o','p','q','r','s','t','u','v'],
-	['w','x','y','z','0','1','2','3'],
-	['4','5','6','7','8','9','+','/'],
-	['=']
-];
-
-var charsetMap = [
-	[0,1,2,3,4,5,6,7],
-	[10,11,12,13,14,15,16,17],
-	[20,21,22,23,24,25,26,27],
-	[30,31,32,33,34,35,36,37],
-	[40,41,42,43,44,45,46,47],
-	[50,51,52,53,54,55,56,57],
-	[60,61,62,63,64,65,66,67],
-	[70,71,72,73,74,75,76,77],
-	[80,81,82,83,84,85,86,87],
-	[90]
-];
-
-
 function printMousePos(event) {
 
 	var div = document.getElementById('incoming');
@@ -103,27 +77,68 @@ var dbutton = document.getElementById("dbutton");
 var sbutton = document.getElementById("sbutton"); 
 var abutton = document.getElementById("abutton"); 
 var cbutton = document.getElementById("cbutton"); 
+var tbutton = document.getElementById("tbutton"); 
 var decodedData;
 var transitionalDataBag = [];
 
 // Event Listeners
+// Disable Tabindex off of the textarea
+incoming.addEventListener('keydown',function(e) {
+    if(e.keyCode === 9) { // tab was pressed
+        // get caret position/selection
+        var start = this.selectionStart;
+        var end = this.selectionEnd;
+
+        var target = e.target;
+        var value = target.value;
+
+        // set textarea value to: text before caret + tab + text after caret
+        target.value = value.substring(0, start)
+                    + "\t"
+                    + value.substring(end);
+
+        // put caret at right position again (add one for the tab)
+        this.selectionStart = this.selectionEnd = start + 1;
+
+        // prevent the focus lose
+        e.preventDefault();
+    }
+},false);
+
+
+// Record map clicks into transitional data bg
 map.addEventListener("click", function(e) { 
     pushMap(e.target);
 });
+
+// Dump B64 data fron transitional data bag
 rbutton.addEventListener("click", function(e) { 
     renderMap(e.target);
 });
+
+// Decode transitional data bag
 dbutton.addEventListener("click", function(e) { 
     decodeMap(e.target);
 });
+
+// Save decoded data as binary
 sbutton.addEventListener("click", function(e) { 
     saveFileB(e.target);
 });
+
+// Save decoded data as text
 abutton.addEventListener("click", function(e) { 
     saveFileA(e.target);
 });
+
+// Clear rendered results
 cbutton.addEventListener("click", function(e) { 
     clearResults(e.target);
+});
+
+// Clear transitional Data bag and reload
+tbutton.addEventListener("click", function(e) { 
+    location.reload();
 });
 
 

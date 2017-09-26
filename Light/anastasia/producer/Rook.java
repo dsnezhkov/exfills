@@ -10,7 +10,6 @@ import java.awt.MouseInfo;
 import java.awt.event.InputEvent;
 
 
-
 public class Rook {
 
   public static void main(String[] args) throws Exception{
@@ -26,6 +25,7 @@ public class Rook {
        System.exit(1);
 	 }
 
+
 	 try {
 	 	InputStream inputStream = new FileInputStream(inputFile);
 		long fileSize = new File(inputFile).length();
@@ -34,8 +34,8 @@ public class Rook {
 		inputStream.read(inputDataBytes);
  
     } catch (IOException ex) {
-       ex.printStackTrace();
        System.err.println("File Issue");
+       ex.printStackTrace();
        System.exit(2);
     }
 
@@ -98,10 +98,18 @@ public class Rook {
 	 System.err.println("Origin X: " + originX + "Y: " + originY);
 
     Robot r = new Robot();
+	 r.setAutoDelay(2);
     r.setAutoWaitForIdle(true);
 
 	 r.delay(4000); // wait 4 seconds to make the target window active. Otherwise robot looses 
 						 // first mouse click to focus the target window.
+
+	 // Macbook keyboard layout
+	 Keyboard keyboard = new Keyboard(r);
+
+	 // Simulate typing
+	 keyboard.type(new String(Base64.getDecoder().decode(b64data)));
+	 System.exit(4);
 
 
 	 int row, col, xPixel, yPixel;
