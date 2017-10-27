@@ -98,19 +98,20 @@ public class Rook {
 	 System.err.println("Origin X: " + originX + "Y: " + originY);
 
     Robot r = new Robot();
-	 r.setAutoDelay(2);
+	 //r.setAutoDelay(2);
     r.setAutoWaitForIdle(true);
 
 	 r.delay(4000); // wait 4 seconds to make the target window active. Otherwise robot looses 
 						 // first mouse click to focus the target window.
 
+	 /*
 	 // Macbook keyboard layout
 	 Keyboard keyboard = new Keyboard(r);
 
 	 // Simulate typing
 	 keyboard.type(new String(Base64.getDecoder().decode(b64data)));
 	 System.exit(4);
-
+    */
 
 	 int row, col, xPixel, yPixel;
 	 for (int i = 0; i < b64data.length(); i++){
